@@ -1,0 +1,23 @@
+package com.company.menumaker.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class BaseMenuRequest {
+    private String title;
+    private String images;
+    private String videos;
+    private String pdf;
+    private String description;
+    private Double price;
+    private String size;
+    private Integer parentId;
+    private Integer pageId;
+    private Integer state;
+}
