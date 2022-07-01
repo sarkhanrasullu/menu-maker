@@ -1,4 +1,4 @@
-package com.company.menumaker.entities;
+package com.company.menumaker.entity;
 
 import lombok.Data;
 

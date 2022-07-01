@@ -1,11 +1,12 @@
 package com.company.menumaker.service;
 
 import com.company.menumaker.dto.*;
-import com.company.menumaker.entities.Menu;
 
 
+import com.company.menumaker.entity.Menu;
 import com.company.menumaker.exception.MenuNotFoundException;
 
+import com.company.menumaker.mapper.MenuMapper;
 import com.company.menumaker.repositories.MenuRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +17,12 @@ import java.util.stream.Collectors;
 @Service
 public class MenuService {
     private final MenuRepository menuRepository;
-    private final MenuDtoConverter menuDtoConverter;
 
-    public MenuService(MenuRepository menuRepository, MenuDtoConverter menuDtoConverter) {
+    private final MenuMapper menuMapper;
+
+    public MenuService(MenuRepository menuRepository, MenuMapper menuMapper) {
         this.menuRepository = menuRepository;
-        this.menuDtoConverter = menuDtoConverter;
+        this.menuMapper = menuMapper;
     }
 
     public MenuDto createMenu(CreateRequestMenu createRequestMenu){
@@ -37,7 +39,7 @@ public class MenuService {
                 .state(createRequestMenu.getState())
                 .build();
 
-    return menuDtoConverter.converter(menuRepository.save(menu));
+    return menuMapper.menuEntityToMenuDto(menuRepository.save(menu));
 
     }
 
@@ -56,30 +58,30 @@ public class MenuService {
            menu.setState(updateRequestMenu.getState());
            menuRepository.save(menu);
         });
-        return optionalMenu.map(menuDtoConverter::converter).orElse(new MenuDto());
+        return optionalMenu.map(menuMapper::menuEntityToMenuDto).orElse(new MenuDto());
 
     }
 
 
     public MenuDto getByMenuDtoTitle(String  title) {
         Menu menu=findByTitle(title);
-        return menuDtoConverter.converter(menu);
+        return menuMapper.menuEntityToMenuDto(menu);
     }
 
 
     public MenuDto getByMenuDtoPrice(Double  price) {
         Menu menu=findByPrice(price);
-        return menuDtoConverter.converter(menu);
+        return menuMapper.menuEntityToMenuDto(menu);
     }
 
 
     public List<MenuDto> getAllMenus(){
         List<Menu>  restaurantList= menuRepository.findAll();
-        return restaurantList.stream().map(menuDtoConverter::converter).collect(Collectors.toList());
+        return menuMapper.toDtoList(restaurantList);
     }
 
     public MenuDto getMenuById(Integer id){
-        return menuRepository.findById(id).map(menuDtoConverter::converter).orElse(new MenuDto());
+        return menuRepository.findById(id).map(menuMapper::menuEntityToMenuDto).orElse(new MenuDto());
 
     }
 

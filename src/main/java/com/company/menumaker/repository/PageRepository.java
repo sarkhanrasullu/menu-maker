@@ -1,6 +1,6 @@
-package com.company.menumaker.repositories;
+package com.company.menumaker.repository;
 
-import com.company.menumaker.entities.Page;
+import com.company.menumaker.entity.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
