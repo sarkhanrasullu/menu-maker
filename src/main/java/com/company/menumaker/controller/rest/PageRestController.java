@@ -1,20 +1,18 @@
-package com.company.menumaker.controller;
+package com.company.menumaker.controller.rest;
 
 import com.company.menumaker.dto.*;
 import com.company.menumaker.service.PageService;
-import org.springframework.data.domain.jaxb.SpringDataJaxb;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.naming.NameNotFoundException;
 import java.util.List;
 
 @RestController
 @RequestMapping("/menumarker/pages")
-public class PageController {
+public class PageRestController {
     private final PageService pageService;
 
-    public PageController(PageService pageService) {
+    public PageRestController(PageService pageService) {
         this.pageService = pageService;
     }
 

@@ -1,4 +1,4 @@
-package com.company.menumaker.controller;
+package com.company.menumaker.controller.rest;
 
 import com.company.menumaker.dto.*;
 import com.company.menumaker.service.MenuService;
@@ -9,11 +9,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/menumarker/menus")
-public class MenuController {
+public class MenuRestController {
 
     private final MenuService menuService;
 
-    public MenuController(MenuService menuService) {
+    public MenuRestController(MenuService menuService) {
         this.menuService = menuService;
     }
 
