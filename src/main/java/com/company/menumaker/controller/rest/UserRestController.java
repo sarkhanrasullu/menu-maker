@@ -1,4 +1,4 @@
-package com.company.menumaker.controller;
+package com.company.menumaker.controller.rest;
 
 import com.company.menumaker.dto.CreateRequestUser;
 import com.company.menumaker.dto.UpdateRequestUser;
@@ -11,11 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/menumaker/user")
-public class UserController {
+public class UserRestController {
 
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    public UserRestController(UserService userService) {
         this.userService = userService;
     }
 

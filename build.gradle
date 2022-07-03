@@ -33,7 +33,8 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
     annotationProcessor 'org.projectlombok:lombok'
-
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.7.1'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.7.1'
 }
 
 tasks.named('test') {
