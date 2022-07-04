@@ -12,13 +12,13 @@
 <header>
     <nav class="navbar fixed-top navbar-expand-lg app__nav-bg">
         <div class="container-fluid">
-            <a class="navbar-brand d-flex align-items-center gap-3" href="restaurants.html">
+            <a class="navbar-brand d-flex align-items-center gap-3" th:href="@{'/restaurants/restaurant/' + ${restaurant.id}}">
                 <img
-                        src="../static/img/logo.png"
+                        th:src="${restaurant.image}"
                         alt="restaurant logo"
                         class="app__nav-logo"
                 />
-                <p class="fw-bolder nav-logo-brandName">Restaurant Name</p>
+                <p class="fw-bolder nav-logo-brandName" th:text="${restaurant.name}"></p>
             </a>
             <button
                     class="navbar-toggler"
@@ -34,7 +34,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="restaurants.html"
+                        <a class="nav-link active" aria-current="page" th:href="@{/restaurants}"
                         >Restaurants</a
                         >
                     </li>
@@ -47,11 +47,9 @@
     <div class="container">
         <div class="app__restaurantDetails d-flex justify-content-between gap-3">
             <div class="app__restaurantDetails-info d-flex flex-column justify-content-between">
-                <h1>Restaurant Name</h1>
-                <p>+994 55 555 55 55</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, accusantium.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, dolores!</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, dolores!</p>
+                <h1 th:text="${restaurant.name}"></h1>
+                <p th:text="${restaurant.phone}"></p>
+                <p th:text="${restaurant.address}"></p>
                 <div class="app__restaurantDetails-links d-flex gap-4">
                     <a href="#">
                         <i class="fa-brands fa-facebook"></i>
