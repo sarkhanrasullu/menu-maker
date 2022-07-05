@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+
+<table>
+    <thead>
+    <tr>
+
+        <th>title</th>
+        <th>images</th>
+        <th>videos</th>
+        <th>description</th>
+        <th>price</th>
+        <th>size</th>
+        <th>parentId</th>
+        <th>pageId</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="list : ${list}">
+
+        <td th:text="${list.title}">0</td>
+        <td th:text="${list.images}">0</td>
+        <td th:text="${list.videos}">0</td>
+        <td th:text="${list.description}">0</td>
+        <td th:text="${list.price}">0</td>
+        <td th:text="${list.size}">0</td>
+        <td th:text="${list.parentId}">0</td>
+        <td th:text="${list.pageId}">0
+
+
+        </td>
+        <a th:href="">update</a>
+    </tr>
+    </tbody>
+
+</table>
+</html>

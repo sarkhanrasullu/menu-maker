@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+
+<h1>Page  Add </h1>
+<form method="post" action="/page/save" th:object="${page}">
+
+
+
+    menu id <input type="text" th:field="*{menuId}"><br>
+    page number<input type="text" th:field="*{pageNumber}"><br>
+    cover videos<input type="text" th:field="*{coverVideos}"><br>
+    cover photo<input type="text" th:field="*{coverPhoto}"><br>
+    state<input type="text" th:field="*{state}"><br>
+
+
+    <input type="submit" class="btn btn-primary" value="add menu">
+</form>
+
+</body>
+</html>
