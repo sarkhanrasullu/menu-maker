@@ -3,12 +3,16 @@ package com.company.menumaker.service;
 import com.company.menumaker.dto.CreateRequestUser;
 import com.company.menumaker.dto.UpdateRequestUser;
 import com.company.menumaker.dto.UserDto;
+import com.company.menumaker.entity.Role;
 import com.company.menumaker.entity.User;
 import com.company.menumaker.exception.UserNotFoundException;
 import com.company.menumaker.mapper.UserMapper;
+import com.company.menumaker.repository.RoleRepository;
 import com.company.menumaker.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,18 +22,30 @@ public class UserService {
 
     private final UserMapper userMapper;
 
-    public UserService(UserRepository userRepository, UserMapper userMapper) {
+    private final PasswordEncoder encoder;
+
+    private final RoleRepository roleRepository;
+
+    public UserService(UserRepository userRepository, UserMapper userMapper, PasswordEncoder encoder, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.encoder = encoder;
+        this.roleRepository = roleRepository;
     }
+
 
     public UserDto createUser(CreateRequestUser createRequestUser) {
         User user = new User();
         user.setEmail(createRequestUser.getEmail());
         user.setPhone(createRequestUser.getPhone());
-        user.setPassword(createRequestUser.getPassword());
+        user.setPassword(encoder.encode(createRequestUser.getPassword()));
         user.setState(createRequestUser.getState());
+
+        Role role = roleRepository.findByRoleName("ROLE_USER").orElse(new Role("USER"));
+
+        user.setRoles(Collections.singletonList(role));
         User savedUser = userRepository.save(user);
+
         return userMapper.userEntityToDto(savedUser);
 
     }
@@ -98,5 +114,8 @@ public class UserService {
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
     }
 
+    public boolean checkEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
 
 }

@@ -3,7 +3,6 @@ package com.company.menumaker.mapper;
 import com.company.menumaker.dto.UserDto;
 import com.company.menumaker.entity.User;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
