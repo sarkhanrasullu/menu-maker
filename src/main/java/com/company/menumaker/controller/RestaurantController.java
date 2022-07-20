@@ -20,12 +20,12 @@ public class RestaurantController {
     @GetMapping("/restaurant/{id}")
     public String getRestaurantById(@PathVariable(name = "id") Integer id, Model model) {
         model.addAttribute("restaurant", service.getRestaurantById(id));
-        return "restaurant";
+        return "user/restaurant";
     }
 
     @GetMapping()
     public String getRestaurants(Model model) {
         model.addAttribute("restaurants", service.getAllRestaurants());
-        return "restaurants";
+        return "user/index";
     }
 }
