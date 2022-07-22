@@ -50,6 +50,11 @@ public class GeneralExceptionAdvisor extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(FileExtensionNotMatchException.class)
+    public ResponseEntity<?> fileExtensionNotMatchException(FileExtensionNotMatchException exception)  {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_ACCEPTABLE);
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> generalExceptionHandler(Exception exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
