@@ -52,6 +52,7 @@ public class SecurityConfiguration {
         http.cors().disable().csrf().disable()
                 .authorizeRequests().antMatchers(HttpMethod.GET, "/**").permitAll()
                 .antMatchers("/auth/**").permitAll()
+                .antMatchers("/upload").permitAll()
                 .and()
                 .authorizeRequests()
                 .anyRequest()
